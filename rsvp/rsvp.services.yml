@@ -1,0 +1,4 @@
+services:
+  rsvp.event:
+    class: Drupal\rsvp\Event
+    arguments: ['@database']

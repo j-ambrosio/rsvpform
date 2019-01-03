@@ -1,0 +1,7 @@
+rsvp.reports:
+  path: '/admin/reports/rsvp'
+  defaults:
+    _controller: '\Drupal\rsvp\Controller\RsvpController::fullReport'
+    _title: 'RSVP - Full Report'
+  requirements:
+    _permission: 'access rsvp full reports'

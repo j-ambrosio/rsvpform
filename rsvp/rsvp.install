@@ -1,0 +1,74 @@
+<?php
+
+use Drupal\user\Entity\Role;
+
+/**
+ * Implements hook_install()
+ */
+function rsvp_install() {
+  $administrator = Role::load('administrator');
+  user_role_grant_permissions($administrator->get('id'), ['access rsvp full reports']);
+}
+
+/**
+ * Implements hook_uninstall()
+ */
+function rsvp_uninstall() {}
+
+/**
+ * Implements hook_schema()
+ */
+function rsvp_schema() {
+  $schema = [];
+  $schema['rsvp'] = [ // sid name email timestamp nid
+    'description' => 'Stores information about rsvp forms submitted.',
+    'fields' => [
+      'sid' => [
+        'description' => 'The submission id.',
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'nid' => [
+        'description' => 'The {node}.nid for this event.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'name' => [
+        'description' => 'The name of the atendee.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'email' => [
+        'description' => 'The e-mail of the atendee.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'timestamp' => [
+        'description' => 'The time the form has been submitted.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => [
+      'sid'
+    ],
+    'indexes' => [
+      'event' => [
+        'nid',
+      ],
+      'user_event' => [
+        'email',
+        'nid'
+      ],
+    ],
+  ];
+  return $schema;
+}
