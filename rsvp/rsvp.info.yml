@@ -1,0 +1,10 @@
+name: RSVP Form
+type: module
+core: 8.x
+description: 'This module provides a RSVP form and reports about it.'
+dependencies:
+  - block
+  - features
+  - node
+version: 8.x-1.0
+package: RSVP

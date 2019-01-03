@@ -1,0 +1,5 @@
+rsvp.reports:
+  title: 'RSVP - Full Report'
+  route_name: rsvp.reports
+  description: 'View Full Report of RSVP module.'
+  parent: system.admin_reports
